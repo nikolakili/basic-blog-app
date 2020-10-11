@@ -1,0 +1,20 @@
+<%- include("partials/header") %>
+<div class="ui main text container segment">
+	<div class="ui huge header"><%= blog.title %></div>
+	<div class="ui top attached">
+		<div class="item">
+			<img class="ui centered rounded image" src="<%= blog.image %>">
+			<div class="content">
+				<span><%= blog.created.toDateString() %></span> <!-- .toDateString js metod koji pretvara datum u obican  -->
+			</div>
+			<div class="description">
+				<p><%- blog.body %></p> <!-- umesto znaka = kod manje posto stavimo crticu da bi mogao da se evaluejtuje kod tj 										da bi mogao neko da ubaci html tagove za paragraf, strong i sl. Samo je opasno jer moze 										da se ubaci i skript pa se koristi express sanitizer koji preciscava kod u ovim 											slucajevima -->
+			</div>
+			<a class="ui orange basic button" href="/blogs/<%= blog._id %>/edit">Edit</a>
+			<form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+				<button class="ui red basic button">Delete</button>
+			</form>
+		</div>
+	</div>
+</div>
+<%- include("partials/footer") %> 
